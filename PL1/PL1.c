@@ -17,6 +17,14 @@ void RellenaMatriz(double **M, int m, int n)
 double **CreaMatriz(int m, int n)
 {
    double **M=NULL;
+   // Reserva de memoria para las filas
+   M=(double **)malloc(m*sizeof(double *));
+
+   // Reserva de memoria para las columnas
+   for(int i=0; i<m; i++) {
+      M[i]=(double *)malloc(n*sizeof(double));
+   }
+   
 
    RellenaMatriz(M,NUM_TALLAS,NUM_TALLAS);
 
@@ -29,8 +37,7 @@ void LiberaMatriz(double **M, int m)
    int i, j;
 
    for(i=0; i<m; i++)
-      for(j=0; j<m; j++)
-         M[i][j]=0;
+      free(M[i]);
 
 }
 
